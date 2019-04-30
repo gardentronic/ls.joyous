@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
 
 from ls.joyous.models import EventBase
+from ls.joyous.models.events import getAllEventsByDay, getAllEventsByWeek
 from .serializers import EventSerializer
 
 
@@ -19,6 +20,11 @@ class EventAPIView(APIView):
 
         context = {'status': 'success'}
         context['date'] = date
+        #events = getAllEventsByDay(request, date, date)
+        weeks = getAllEventsByWeek(request, date.year, date.month)
+        for week in weeks:
+            pass
+        pass
 
         return Response(context)
 
